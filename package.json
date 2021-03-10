@@ -29,6 +29,8 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.7.0",
     "microbundle": "^0.13.0",
     "rimraf": "^3.0.2"
   },
