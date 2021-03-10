@@ -1,6 +1,11 @@
 {
   "name": "vuex-dash-dpp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "author": {
+    "name": "Mike Pierce",
+    "email": "welcome@thrill.house",
+    "url": "https://thrill.house)"
+  },
   "source": "src/vuex-dash-dpp.js",
   "main": "dist/vuex-dash-dpp.js",
   "module": "dist/vuex-dash-dpp.module.js",
@@ -9,6 +14,10 @@
     "dist",
     "src"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thrill-house/vuex-dash-dpp.git"
+  },
   "scripts": {
     "build": "rimraf dist && microbundle --name createDashDpp",
     "prepare": "yarn build",
