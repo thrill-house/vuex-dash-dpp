@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && microbundle --name createDashDpp",
+    "prepare": "yarn build",
     "dev": "microbundle watch"
   },
   "dependencies": {
