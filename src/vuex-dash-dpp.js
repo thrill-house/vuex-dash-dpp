@@ -139,7 +139,13 @@ export default (config) => {
 
         // Client uses the dynamic connection details above
         client: (state, getters) => {
-          return new Dash.Client(getters.connection);
+          try {
+            return new Dash.Client(getters.connection);
+          } catch (e) {
+            console.debug(e);
+          }
+
+          return null;
         },
 
         // Account related getters
