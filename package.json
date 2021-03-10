@@ -1,0 +1,27 @@
+{
+  "name": "vuex-dash-dpp",
+  "source": "src/vuex-dash-dpp.js",
+  "main": "dist/vuex-dash-dpp.js",
+  "module": "dist/vuex-dash-dpp.module.js",
+  "unpkg": "dist/vuex-dash-dpp.umd.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "rimraf dist && microbundle --name createDashDpp",
+    "dev": "microbundle watch"
+  },
+  "dependencies": {
+    "dash": "^3.18.1",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {
+    "vue": "^2.0.0",
+    "vuex": "^3.0.0 || ^4.0.0"
+  }
+}
