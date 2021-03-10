@@ -1,5 +1,6 @@
 {
   "name": "vuex-dash-dpp",
+  "version": "0.1.0",
   "source": "src/vuex-dash-dpp.js",
   "main": "dist/vuex-dash-dpp.js",
   "module": "dist/vuex-dash-dpp.module.js",
