@@ -86,7 +86,7 @@ export default (config) => {
   const pluginOptions = { ...defaultOptions, ...config };
 
   // Destructure constants that can no longer change through a subscription
-  const { namespace, subscribeToFrom, documents } = pluginOptions;
+  const { namespace, subscribeToFrom } = pluginOptions;
 
   // Destructure subscription tuple to return list of values and mutations to subscribe and sync
   const [subscriptions, fromRoot] = subscribeToFrom;
@@ -360,17 +360,24 @@ export default (config) => {
         },
 
         // Helper to run the "all" action for every document module
-        all: async ({ dispatch }) => {
-          each(documents, (document) => {
+        all: async ({ dispatch, state, ...rest }) => {
+          each(state.options.documents, (document) => {
             dispatch(`${document}/all`);
           });
         },
       },
-      // Dynamically create a module for each document in the list
-      modules: reduce(
-        documents,
-        (result, document) => {
-          result[document] = {
+    });
+
+    store.watch(
+      (state) => state[namespace].options.documents,
+      (newDocuments, oldDocuments) => {
+        // Remove old modules
+        each(oldDocuments, (document) => {
+          store.unregisterModule([namespace, document]);
+        });
+        // Dynamically create a module for each document in the list
+        each(newDocuments, (document) => {
+          store.registerModule([namespace, document], {
             namespaced: true,
             state: {
               documents: {},
@@ -607,13 +614,12 @@ export default (config) => {
                 return false;
               },
             },
-          };
+          });
+        });
 
-          return result;
-        },
-        {}
-      ),
-    });
+        store.dispatch(`${namespace}/all`);
+      }
+    );
 
     // Subscribe to root store mutations and sync root state values and getters to the plugin options.
     store.subscribe(({ type }, state) => {
